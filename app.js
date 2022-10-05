@@ -1,19 +1,31 @@
 console.log("Let's get this party started!");
 
+const GIPHY_API_KEY = 'MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym';
+const GIPHY_URL = 'https://api.giphy.com/v1';
+const $searchInput = $("#search");
+const $gallery = $(".gallery");
 
+function generateRandomIndex(arr) {
+  return Math.floor(Math.random() * arr.length);
+}
 
-
+function addGif(gifURLs) {
+  const randomIdx = generateRandomIndex(gifURLs);
+  const gif = $("<img>")
+}
 
 async function getGif() {
-  let gif = await axios.post(
-
+  let search = $searchInput.val();
+  let response = await axios.get(
+    `${GIPHY_URL}/gifs/search`, { params: { search, apiKey : GIPHY_API_KEY }}
   );
+  return response;
 }
 
 
 
 
-$('#search').on("click", getGif);
+$("form").on("click", getGif);
 
 
 
